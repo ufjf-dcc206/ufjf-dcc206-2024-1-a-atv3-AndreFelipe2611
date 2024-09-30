@@ -51,7 +51,6 @@ class PokemonCard extends HTMLElement {
             </div>
         `;
 
-        // Adiciona o evento de clique
         this.shadow.querySelector('.card')?.addEventListener('click', () => {
             const event = new CustomEvent('card-click', {
                 detail: { name, image, types }
