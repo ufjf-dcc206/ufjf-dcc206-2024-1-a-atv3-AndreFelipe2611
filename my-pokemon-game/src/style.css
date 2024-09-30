@@ -8,7 +8,7 @@
 .player-area {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Permite quebrar as linhas em telas menores */
+  flex-wrap: wrap; 
   gap: 10px; /* Espaçamento entre as cartas */
   margin: 10px 0;
 }
@@ -48,7 +48,7 @@
 
 .card img {
   width: 100%;
-  max-width: 120px; /* Limita a largura máxima da imagem */
+  max-width: 120px; 
   height: auto;
 }
 
@@ -77,7 +77,7 @@
 }
 
 @media (max-width: 768px) {
-  /* Ajuste para telas médias (tablets e similares) */
+  /* (tablets) */
   .card {
       width: 120px;
   }
@@ -89,9 +89,9 @@
 }
 
 @media (max-width: 480px) {
-  /* Ajuste para telas pequenas (celulares) */
+  /*(celular) */
   .player-area {
-      flex-direction: column; /* Coloca as cartas em colunas no celular */
+      flex-direction: column; /* colunas no celular */
       align-items: center;
   }
 
