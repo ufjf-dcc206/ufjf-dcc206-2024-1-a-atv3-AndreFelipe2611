@@ -1,7 +1,7 @@
 import './style.css';
 import './components/pokemonCard'; 
 
-// Função para buscar 10 Pokémon aleatórios da PokéAPI
+// Função para buscar 10 Pokémon aleatórios da API
 async function fetchRandomPokemon(): Promise<any[]> {
     const pokemonIds = Array.from({ length: 10 }, () => Math.floor(Math.random() * 898) + 1);
 
@@ -16,8 +16,10 @@ async function fetchRandomPokemon(): Promise<any[]> {
 async function setupGame() {
     const gameContainer = document.querySelector<HTMLDivElement>('#app')!;
     
-    
-    const [playerA, playerB] = await Promise.all([fetchRandomPokemon(), fetchRandomPokemon()]);
+    // Busca 10 Pokémon 
+    const allPokemon = await fetchRandomPokemon();
+    const playerA = allPokemon.slice(0, 5); 
+    const playerB = allPokemon.slice(5, 10); 
 
     // Função para criar a linha de cartas de um jogador
     const createPlayerRow = (pokemons: any[]) => {
@@ -37,13 +39,13 @@ async function setupGame() {
         return row;
     };
 
-    //clique na carta
+    // Função para lidar com o clique na carta
     const handleCardClick = (event: CustomEvent) => {
         const gameArea = document.getElementById('game-area')!;
         
         const { name, image, types } = event.detail;
 
-        // Limpa a área de jogo e coloca a nova carta no centro
+       
         gameArea.innerHTML = ''; 
         const playedCard = document.createElement('pokemon-card');
         playedCard.setAttribute('name', name);
@@ -52,14 +54,14 @@ async function setupGame() {
         gameArea.appendChild(playedCard);
     };
 
-   
+    
     gameContainer.innerHTML = `
         <div class="player-area player-a"></div>
         <div id="game-area" class="game-area"></div>
         <div class="player-area player-b"></div>
     `;
 
-    // Renderiza as linhas dos jogadores A e B
+   
     const playerARow = createPlayerRow(playerA); 
     const playerBRow = createPlayerRow(playerB);
 
